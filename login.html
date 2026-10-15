@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вход — Тайное голосование Учёного совета ИШИТР</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/app.css">
+  <script type="module" src="js/pages/login.js"></script>
+</head>
+<body>
+  <div class="login">
+    <section class="login-left" aria-label="О системе">
+      <div class="brand">
+        <span class="brand-mark" style="width:48px;height:48px">
+          <svg viewBox="0 0 24 24" aria-hidden="true" style="width:28px;height:28px"><path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/></svg>
+        </span>
+        <span class="brand-text"><b style="font-size:18px">Учёный совет ИШИТР</b><span style="font-size:14px">Томский политехнический университет</span></span>
+      </div>
+
+      <div class="stack" style="max-width:640px">
+        <p class="overline" style="color:var(--c-green-text);font-size:13px;letter-spacing:.14em">Система тайного голосования</p>
+        <h1>Один голос — одна кнопка. Никто не узнает, чья.</h1>
+        <p class="lead">Пульты вместо бумажных бюллетеней: сервер в зале считает голоса и выводит итог на проектор, когда голосование закончено.</p>
+      </div>
+
+      <div class="row" style="gap:40px;align-items:flex-end">
+        <ul class="facts">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.4 7 14.8 8.1 14.8 9.5V11C15.4 11 16 11.6 16 12.3V15.8C16 16.4 15.4 17 14.7 17H9.2C8.6 17 8 16.4 8 15.7V12.2C8 11.6 8.6 11 9.2 11V9.5C9.2 8.1 10.6 7 12 7M12 8.2C11.2 8.2 10.5 8.7 10.5 9.5V11H13.5V9.5C13.5 8.7 12.8 8.2 12 8.2Z"/></svg>
+            <div><b>Полная анонимность</b><span>Хранятся только счётчики, без связи «пульт — выбор»</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 6.41L8.5 18.41L3 12.91L4.41 11.5L8.5 15.58L19.09 5L20.5 6.41Z"/></svg>
+            <div><b>Подтверждение голоса</b><span>Светодиод загорается, только когда сервер принял голос</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21L15.6 16.2C14.6 15.45 13.35 15 12 15C10.65 15 9.4 15.45 8.4 16.2L12 21M12 3C7.95 3 4.21 4.34 1.2 6.6L3 9C5.5 7.12 8.62 6 12 6C15.38 6 18.5 7.12 21 9L22.8 6.6C19.79 4.34 16.05 3 12 3M12 9C9.3 9 6.81 9.89 4.8 11.4L6.6 13.8C8.1 12.67 9.97 12 12 12C14.03 12 15.9 12.67 17.4 13.8L19.2 11.4C17.19 9.89 14.7 9 12 9Z"/></svg>
+            <div><b>Без интернета</b><span>Всё работает в сети кабинета ISHITR-VOTE</span></div>
+          </li>
+        </ul>
+
+        <figure style="display:flex;flex-direction:column;align-items:center;gap:12px">
+          <div class="pult" aria-hidden="true">
+            <div class="row-between"><span class="overline">Пульт</span><span class="conn tiny"><span class="dot"></span>сеть</span></div>
+            <div class="pult-keys">
+              <div class="pult-key"><span class="led" style="background:var(--c-green);box-shadow:0 0 0 4px rgba(40,190,70,.25),0 0 14px var(--c-green)"></span><span class="key" style="border-color:var(--c-green)">За</span></div>
+              <div class="pult-key"><span class="led" style="background:rgba(255,68,96,.25)"></span><span class="key">Против</span></div>
+              <div class="pult-key"><span class="led" style="background:rgba(255,182,0,.3)"></span><span class="key" style="font-size:13px">Возд.</span></div>
+            </div>
+          </div>
+          <figcaption class="tiny muted">Голос «За» принят сервером</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="login-right">
+      <form class="login-form" id="login-form" novalidate aria-labelledby="login-title">
+        <div class="stack-s">
+          <h2 id="login-title" style="font-size:36px;font-weight:700;line-height:1.15">Вход в панель</h2>
+          <p class="muted">Для секретаря и администратора. Члены совета голосуют с пультов и в системе не регистрируются.</p>
+        </div>
+
+        <div id="form-error" class="alert alert-err" role="alert" hidden></div>
+
+        <div class="field">
+          <label class="label" for="login">Логин</label>
+          <input class="input" id="login" name="login" type="text" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="Например, secretary" required aria-describedby="login-err">
+          <div class="error-text" id="login-err" hidden>Введите логин</div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="password">Пароль</label>
+          <div class="input-wrap">
+            <input class="input" id="password" name="password" type="password" autocomplete="current-password" placeholder="Введите пароль" required style="padding-right:52px" aria-describedby="password-err caps-hint">
+            <button class="input-action" id="toggle-pw" type="button" aria-label="Показать пароль" aria-pressed="false"></button>
+          </div>
+          <div class="error-text" id="password-err" hidden>Введите пароль</div>
+          <div class="hint" id="caps-hint" hidden>Включён Caps Lock</div>
+          <div class="hint">Забыли пароль — обратитесь к администратору системы.</div>
+        </div>
+
+        <button class="btn btn-primary btn-lg btn-block" id="submit" type="submit">Войти</button>
+
+        <div id="demo-hint" class="alert alert-info" hidden></div>
+
+        <div style="height:1px;background:var(--c-divider)"></div>
+        <div class="conn" id="server-status" role="status"><span class="dot"></span><span>Проверяем связь с сервером…</span></div>
+      </form>
+    </section>
+  </div>
+</body>
+</html>

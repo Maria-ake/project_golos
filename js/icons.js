@@ -1,0 +1,104 @@
+/**
+ * Иконки Material Design Icons (filled), как в UI-kit. viewBox 0 0 24 24.
+ * icon('check') → <svg>…</svg>, цвет — currentColor.
+ */
+const P = {
+  school: 'M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z',
+  check: 'M20.5 6.41L8.5 18.41L3 12.91L4.41 11.5L8.5 15.58L19.09 5L20.5 6.41Z',
+  chevronRight: 'M8.59 16.58L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.58Z',
+  chevronLeft: 'M15.41 16.58L10.83 12L15.41 7.41L14 6L8 12L14 18L15.41 16.58Z',
+  chevronDown: 'M7.41 8.58L12 13.17L16.59 8.58L18 10L12 16L6 10L7.41 8.58Z',
+  chevronUp: 'M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z',
+  plus: 'M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z',
+  minus: 'M19 13H5V11H19V13Z',
+  close: 'M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z',
+  logout: 'M17 7L15.59 8.41L18.17 11H8V13H18.17L15.59 15.58L17 17L22 12M4 5H12V3H4C2.9 3 2 3.9 2 5V19C2 20.1 2.9 21 4 21H12V19H4V5Z',
+  eye: 'M12 9A3 3 0 0 0 9 12A3 3 0 0 0 12 15A3 3 0 0 0 15 12A3 3 0 0 0 12 9M12 17A5 5 0 0 1 7 12A5 5 0 0 1 12 7A5 5 0 0 1 17 12A5 5 0 0 1 12 17M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5Z',
+  eyeOff: 'M11.83 9L15 12.16C15 12.11 15 12.05 15 12A3 3 0 0 0 12 9C11.94 9 11.89 9 11.83 9M7.53 9.8L9.08 11.35C9.03 11.56 9 11.77 9 12A3 3 0 0 0 12 15C12.22 15 12.44 14.97 12.65 14.92L14.2 16.47C13.53 16.8 12.79 17 12 17A5 5 0 0 1 7 12C7 11.21 7.2 10.47 7.53 9.8M2 4.27L4.28 6.55L4.73 7C3.08 8.3 1.78 10 1 12C2.73 16.39 7 19.5 12 19.5C13.55 19.5 15.03 19.2 16.38 18.66L16.81 19.08L19.73 22L21 20.73L3.27 3M12 7A5 5 0 0 1 17 12C17 12.64 16.87 13.26 16.64 13.82L19.57 16.75C21.07 15.5 22.27 13.86 23 12C21.27 7.61 17 4.5 12 4.5C10.6 4.5 9.26 4.75 8 5.2L10.17 7.35C10.74 7.13 11.35 7 12 7Z',
+  shieldLock: 'M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.4 7 14.8 8.1 14.8 9.5V11C15.4 11 16 11.6 16 12.3V15.8C16 16.4 15.4 17 14.7 17H9.2C8.6 17 8 16.4 8 15.7V12.2C8 11.6 8.6 11 9.2 11V9.5C9.2 8.1 10.6 7 12 7M12 8.2C11.2 8.2 10.5 8.7 10.5 9.5V11H13.5V9.5C13.5 8.7 12.8 8.2 12 8.2Z',
+  wifi: 'M12 21L15.6 16.2C14.6 15.45 13.35 15 12 15C10.65 15 9.4 15.45 8.4 16.2L12 21M12 3C7.95 3 4.21 4.34 1.2 6.6L3 9C5.5 7.12 8.62 6 12 6C15.38 6 18.5 7.12 21 9L22.8 6.6C19.79 4.34 16.05 3 12 3M12 9C9.3 9 6.81 9.89 4.8 11.4L6.6 13.8C8.1 12.67 9.97 12 12 12C14.03 12 15.9 12.67 17.4 13.8L19.2 11.4C17.19 9.89 14.7 9 12 9Z',
+  alert: 'M13 13H11V7H13M13 17H11V15H13M12 2C10.69 2 9.39 2.26 8.17 2.76C6.96 3.26 5.86 4 4.93 4.93C3.05 6.8 2 9.35 2 12C2 14.65 3.05 17.2 4.93 19.07C5.86 20 6.96 20.74 8.17 21.24C9.39 21.74 10.69 22 12 22C14.65 22 17.2 20.95 19.07 19.07C20.95 17.2 22 14.65 22 12C22 10.69 21.74 9.39 21.24 8.17C20.74 6.96 20 5.86 19.07 4.93C18.14 4 17.04 3.26 15.83 2.76C14.61 2.26 13.31 2 12 2Z',
+  info: 'M13 9H11V7H13M13 17H11V11H13M12 2C10.69 2 9.39 2.26 8.17 2.76C6.96 3.26 5.86 4 4.93 4.93C3.05 6.8 2 9.35 2 12C2 14.65 3.05 17.2 4.93 19.07C5.86 20 6.96 20.74 8.17 21.24C9.39 21.74 10.69 22 12 22C14.65 22 17.2 20.95 19.07 19.07C20.95 17.2 22 14.65 22 12C22 10.69 21.74 9.39 21.24 8.17C20.74 6.96 20 5.86 19.07 4.93C18.14 4 17.04 3.26 15.83 2.76C14.61 2.26 13.31 2 12 2Z',
+  play: 'M8 5.14V19.14L19 12.14L8 5.14Z',
+  stop: 'M18 18H6V6H18V18Z',
+  replay: 'M12 5V1L7 6L12 11V7C15.31 7 18 9.69 18 13C18 16.31 15.31 19 12 19C8.69 19 6 16.31 6 13H4C4 17.42 7.58 21 12 21C16.42 21 20 17.42 20 13C20 8.58 16.42 5 12 5Z',
+  excel: 'M14 2H6A2 2 0 0 0 4 4V20A2 2 0 0 0 6 22H18A2 2 0 0 0 20 20V8L14 2M15.8 20H14L12 16.6L10 20H8.2L11.1 15.5L8.2 11H10L12 14.4L14 11H15.8L12.9 15.5L15.8 20M13 9V3.5L18.5 9H13Z',
+  docPlus: 'M14 2H6C4.89 2 4 2.89 4 4V20C4 21.11 4.89 22 6 22H13.81C13.28 21.09 13 20.05 13 19C13 18.67 13.03 18.33 13.08 18H6V16H13.81C14.27 15.2 14.91 14.5 15.68 14H6V12H18V13.08C18.33 13.03 18.67 13 19 13C19.33 13 19.67 13.03 20 13.08V8L14 2ZM13 9V3.5L18.5 9H13ZM18 15V18H15V20H18V23H20V20H23V18H20V15H18Z',
+  save: 'M17 3H5C3.89 3 3 3.9 3 5V19C3 20.11 3.9 21 5 21H12.81C12.45 20.38 12.2 19.7 12.08 19H12C10.34 19 9 17.66 9 16C9 14.34 10.34 13 12 13C12.68 13 13.34 13.23 13.87 13.65C15 12.59 16.46 12 18 12C19.05 12 20.09 12.28 21 12.81V7L17 3ZM15 9H5V5H15V9ZM17 14V17H14V19H17V22H19V19H22V17H19V14H17Z',
+  pencil: 'M20.71 7.04C21.1 6.65 21.1 6 20.71 5.63L18.37 3.29C18 2.9 17.35 2.9 16.96 3.29L15.12 5.12L18.87 8.87M3 17.25V21H6.75L17.81 9.93L14.06 6.18L3 17.25Z',
+  trash: 'M19 4H15.5L14.5 3H9.5L8.5 4H5V6H19M6 19A2 2 0 0 0 8 21H16A2 2 0 0 0 18 19V7H6V19Z',
+  drag: 'M9 3H11V5H9V3M13 3H15V5H13V3M9 7H11V9H9V7M13 7H15V9H13V7M9 11H11V13H9V11M13 11H15V13H13V11M9 15H11V17H9V15M13 15H15V17H13V15M9 19H11V21H9V19M13 19H15V21H13V19Z',
+  paste: 'M19 20H5V4H7V7H17V4H19M12 2A1 1 0 0 1 13 3A1 1 0 0 1 12 4A1 1 0 0 1 11 3A1 1 0 0 1 12 2M19 2H14.82C14.4 0.84 13.3 0 12 0C10.7 0 9.6 0.84 9.18 2H5A2 2 0 0 0 3 4V20A2 2 0 0 0 5 22H19A2 2 0 0 0 21 20V4A2 2 0 0 0 19 2Z',
+  presentation: 'M2 3H10A2 2 0 0 1 12 1A2 2 0 0 1 14 3H22V5H21V16H15.25L17 22H15L13.25 16H10.75L9 22H7L8.75 16H3V5H2V3M5 5V14H19V5H5Z',
+  lock: 'M12 17A2 2 0 0 0 14 15C14 13.89 13.1 13 12 13A2 2 0 0 0 10 15A2 2 0 0 0 12 17M18 8A2 2 0 0 1 20 10V20A2 2 0 0 1 18 22H6A2 2 0 0 1 4 20V10C4 8.89 4.9 8 6 8H7V6A5 5 0 0 1 12 1A5 5 0 0 1 17 6V8H18M12 3A3 3 0 0 0 9 6V8H15V6A3 3 0 0 0 12 3Z',
+  cellphone: 'M17 19H7V5H17M17 1H7C5.89 1 5 1.89 5 3V21C5 22.1 5.9 23 7 23H17C18.1 23 19 22.1 19 21V3C19 1.89 18.1 1 17 1Z',
+  flash: 'M7 2V13H10V22L17 10H13L17 2H7Z',
+  magnify: 'M9.5 3A6.5 6.5 0 0 1 16 9.5C16 11.11 15.41 12.59 14.44 13.73L14.71 14H15.5L20.5 19L19 20.5L14 15.5V14.71L13.73 14.44C12.59 15.41 11.11 16 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5 6.5 0 0 1 9.5 3M9.5 5C7 5 5 7 5 9.5C5 12 7 14 9.5 14C12 14 14 12 14 9.5C14 7 12 5 9.5 5Z',
+  accountGroup: 'M12 5.5A3.5 3.5 0 0 1 15.5 9A3.5 3.5 0 0 1 12 12.5A3.5 3.5 0 0 1 8.5 9A3.5 3.5 0 0 1 12 5.5M5 8C5.56 8 6.08 8.15 6.53 8.42C6.38 9.85 6.8 11.27 7.66 12.38C7.16 13.34 6.16 14 5 14A3 3 0 0 1 2 11A3 3 0 0 1 5 8M19 8A3 3 0 0 1 22 11A3 3 0 0 1 19 14C17.84 14 16.84 13.34 16.34 12.38C17.2 11.27 17.62 9.85 17.47 8.42C17.92 8.15 18.44 8 19 8M5.5 18.25C5.5 16.18 8.41 14.5 12 14.5C15.59 14.5 18.5 16.18 18.5 18.25V20H5.5V18.25M0 20V18.5C0 17.11 1.89 15.94 4.45 15.6C3.86 16.28 3.5 17.22 3.5 18.25V20H0M24 20H20.5V18.25C20.5 17.22 20.14 16.28 19.55 15.6C22.11 15.94 24 17.11 24 18.5V20Z',
+  calendar: 'M19 19H5V8H19M16 1V3H8V1H6V3H5C3.89 3 3 3.89 3 5V19A2 2 0 0 0 5 21H19A2 2 0 0 0 21 19V5C21 3.89 20.1 3 19 3H18V1M17 12H12V17H17V12Z',
+  history: 'M13.5 8H12V13L16.28 15.54L17 14.33L13.5 12.25V8M13 3A9 9 0 0 0 4 12H1L4.96 16.03L9 12H6A7 7 0 0 1 13 5A7 7 0 0 1 20 12A7 7 0 0 1 13 19C11.07 19 9.32 18.21 8.06 16.94L6.64 18.36C8.27 20 10.5 21 13 21A9 9 0 0 0 22 12A9 9 0 0 0 13 3',
+  copy: 'M19 21H8V7H19M19 5H8A2 2 0 0 0 6 7V21A2 2 0 0 0 8 23H19A2 2 0 0 0 21 21V7A2 2 0 0 0 19 5M16 1H4A2 2 0 0 0 2 3V17H4V3H16V1Z',
+  fullscreen: 'M5 5H10V7H7V10H5V5M14 5H19V10H17V7H14V5M17 14H19V19H14V17H17V14M10 17V19H5V14H7V17H10Z',
+  paper: 'M14 2H6A2 2 0 0 0 4 4V20A2 2 0 0 0 6 22H18A2 2 0 0 0 20 20V8L14 2M18 20H6V4H13V9H18V20M8 12H16V14H8V12M8 16H13V18H8V16Z',
+};
+
+const NS = 'http://www.w3.org/2000/svg';
+
+export function icon(name, opts = {}) {
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  if (opts.class) svg.setAttribute('class', opts.class);
+  if (opts.size) { svg.style.width = opts.size + 'px'; svg.style.height = opts.size + 'px'; }
+  if (opts.color) svg.style.fill = opts.color;
+  const path = document.createElementNS(NS, 'path');
+  path.setAttribute('d', P[name] || P.info);
+  svg.append(path);
+  return svg;
+}
+
+/** Кольцевой таймер: возвращает { el, set(secondsLeft, total) }. */
+export function ringTimer({ size = 196, label = 'осталось' } = {}) {
+  const R = 84;
+  const C = 2 * Math.PI * R;
+  const wrap = document.createElement('div');
+  wrap.className = 'ring';
+  wrap.setAttribute('role', 'timer');
+  wrap.style.width = wrap.style.height = size + 'px';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 200 200');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.style.width = svg.style.height = size + 'px';
+  const mk = (cls) => {
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', '100'); c.setAttribute('cy', '100'); c.setAttribute('r', String(R));
+    c.setAttribute('fill', 'none'); c.setAttribute('stroke-width', '14'); c.setAttribute('class', cls);
+    return c;
+  };
+  const track = mk('track');
+  const bar = mk('bar');
+  bar.setAttribute('stroke-linecap', 'round');
+  bar.setAttribute('stroke-dasharray', C.toFixed(2));
+  svg.append(track, bar);
+  const text = document.createElement('div');
+  text.className = 'ring-text';
+  const b = document.createElement('b');
+  const s = document.createElement('span');
+  s.className = 'small muted';
+  s.textContent = label;
+  text.append(b, s);
+  wrap.append(svg, text);
+  return {
+    el: wrap,
+    set(left, total) {
+      const l = Math.max(0, Math.round(left));
+      const m = Math.floor(l / 60);
+      b.textContent = `${m}:${String(l % 60).padStart(2, '0')}`;
+      const frac = total > 0 ? Math.max(0, Math.min(1, left / total)) : 0;
+      bar.setAttribute('stroke-dashoffset', (C * (1 - frac)).toFixed(2));
+      wrap.classList.toggle('is-low', l <= 3);
+      wrap.setAttribute('aria-label', `Осталось ${l} с`);
+    },
+  };
+}
